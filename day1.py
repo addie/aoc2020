@@ -1,21 +1,5 @@
-import time
+from timeit import timeit
 from typing import *
-
-
-def timeit(method):
-    def timed(*args, **kw):
-        ts = time.time()
-        result = method(*args, **kw)
-        te = time.time()
-        if 'log_time' in kw:
-            name = kw.get('log_name', method.__name__.upper())
-            kw['log_time'][name] = int((te - ts) * 1000)
-        else:
-            val = (te - ts) * 1000
-            print(f'{method.__name__}  {val:2.2f} ms')
-        return result
-
-    return timed
 
 
 @timeit
@@ -32,6 +16,7 @@ def day1a(values: List[int], target: int) -> int:
             break
 
     return num1 * num2
+
 
 @timeit
 def day1b(values: List[int], target: int) -> int:
